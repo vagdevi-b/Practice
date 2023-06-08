@@ -1,0 +1,4 @@
+the file in-place, replacing the original file idiot 2nd
+edited version, while the s command performs the idiot 3rd
+operation without modifying the original file, idiot 4th
+the modified result to the standard output idiot 5th

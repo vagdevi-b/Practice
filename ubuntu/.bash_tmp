@@ -1,0 +1,47 @@
+Description:
+
+Write a bash script that retrieves and displays system information such as the current date and time, the logged-in users, 
+the system uptime, and the memory usage.
+
+Expected Outcome:
+
+When the script is executed with the command `./system_info.sh`, it should retrieve the required system information 
+and display it in a readable format. For example:
+
+```
+
+Date and Time: Mon, 26 May 2023 10:25:15 GMT
+
+Logged-in Users: john, jane, sarah
+
+System Uptime: 4 days, 2 hours, 15 minutes
+
+Memory Usage: 4.5 GB used out of 16 GB (28%)
+---------------------------------------------
+
+#!/bin/bash
+
+# Retrieve the current date and time
+date_time=$(date)
+
+# Retrieve the logged-in users
+users=$(who | awk '{print $1}' | sort | uniq)
+
+# Retrieve the system uptime
+uptime=$(uptime -p)
+
+# Retrieve memory usage
+total_memory=$(free -h | awk '/^Mem:/ {print $2}')
+used_memory=$(free -h | awk '/^Mem:/ {print $3}')
+percentage_used=$(free | awk '/^Mem:/ {printf("%.2f%%", $3/$2 * 100)}')
+
+# Display system information
+echo "Date and Time: $date_time"
+echo
+echo "Logged-in Users: $users"
+echo
+echo "System Uptime: $uptime"
+echo
+echo "Memory Usage: $used_memory used out of $total_memory ($percentage_used)"
+
+
